@@ -9,8 +9,8 @@ SECTION = "libs"
 # This recipe selects the GPLv2 terms documented in LICENSE.md and COPYING.md.
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = " \
-    file://LICENSE.md;md5=e950816f5121956f594463383a3601ff \
-    file://COPYING.md;md5=f6b273a0a9f3f45338fea41cb0dfdb27 \
+    file://LICENSE.md;md5=348e5c68f0e0ab79c873d3adde308380 \
+    file://COPYING.md;md5=570a9b3749dd0463a1778803b12a6dce \
 "
 
 SRC_URI = "git://github.com/argenox/noxtls.git;protocol=https;branch=master;destsuffix=git"
