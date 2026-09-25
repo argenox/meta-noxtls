@@ -5,7 +5,8 @@ layer_root=$(cd "$(dirname "$0")/.." && pwd)
 
 for path in README.md LICENSE conf/layer.conf \
   recipes-crypto/noxtls/noxtls_0.2.70.bb \
-  recipes-core/packagegroups/packagegroup-noxtls.bb; do
+  recipes-core/packagegroups/packagegroup-noxtls.bb \
+  scripts/validate-yocto.sh; do
   test -f "${layer_root}/${path}"
 done
 
