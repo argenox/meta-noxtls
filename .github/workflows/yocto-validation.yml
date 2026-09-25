@@ -36,6 +36,16 @@ jobs:
           df -h "${RUNNER_TEMP}"
           command -v git
           command -v python3
+      - name: Enable BitBake user namespaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          if unshare --user --map-root-user --fork true; then
+            echo "Unprivileged user namespaces are available."
+            exit 0
+          fi
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+          unshare --user --map-root-user --fork true
       - name: Build NoxTLS and verify image manifest
         shell: bash
         run: bash scripts/validate-yocto.sh "${{ matrix.release }}"
