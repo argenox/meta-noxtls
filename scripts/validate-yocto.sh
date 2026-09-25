@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the layer and a minimal image on the Argenox Linux Yocto runner.
+# Build the layer and a minimal image on a GitHub-hosted Linux runner.
 set -euo pipefail
 
 release=${1:?Usage: validate-yocto.sh scarthgap|wrynose}
@@ -42,15 +42,20 @@ echo "meta-noxtls revision: $(git -C "${layer_root}" rev-parse HEAD)"
 
 cd "${validation_root}"
 # Both pinned OE-Core revisions support this manual Linux build setup.
+# OE-Core's environment script reads optional shell variables without defaults.
+# Disable nounset only while sourcing it, then restore strict validation.
+set +u
 source openembedded-core/oe-init-build-env "${validation_root}/build"
+set -u
 
 cat >> conf/local.conf <<'EOF'
 MACHINE = "qemux86-64"
 DISTRO = "nodistro"
 PACKAGE_CLASSES = "package_ipk"
 IMAGE_INSTALL:append = " packagegroup-noxtls"
-BB_NUMBER_THREADS = "8"
-PARALLEL_MAKE = "-j 8"
+BB_NUMBER_THREADS = "4"
+PARALLEL_MAKE = "-j 4"
+INHERIT += "rm_work"
 EOF
 
 cache_root="${HOME}/.cache/meta-noxtls/${release}"

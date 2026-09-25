@@ -14,7 +14,7 @@ layer is independent of BlueNox and does not provide a machine or image recipe.
 
 No Yocto release has passed a layer build yet. `conf/layer.conf` therefore does
 not claim a tested release in `LAYERSERIES_COMPAT_noxtls`. Once a release passes
-the validation commands below on the Argenox Linux builder, add its codename
+the validation commands below on a Linux runner, add its codename
 to that variable and update this table. The initial layer commit listed both
 releases before either had been tested.
 
@@ -143,8 +143,8 @@ release to `LAYERSERIES_COMPAT_noxtls`. A native CMake build or metadata-only
 check does not establish image compatibility.
 
 The [Yocto validation workflow](.github/workflows/yocto-validation.yml) runs
-these checks for both releases on the same self-hosted `linux-builder` used by
-the i.MX91 and AM64x builds. Its script pins OE-Core and BitBake revisions,
+these checks for both releases on standard GitHub-hosted `ubuntu-24.04`
+runners. Its script pins OE-Core and BitBake revisions,
 builds for `qemux86-64`, and checks that the image manifest contains both
 `noxtls` and `packagegroup-noxtls`.
 
