@@ -131,7 +131,7 @@ checksums together, then repeat the Yocto validation.
 On a Linux build host configured for the release being evaluated, run:
 
 ```sh
-bash scripts/check-layer.sh
+bash ../meta-noxtls/scripts/check-layer.sh
 bitbake-layers show-recipes noxtls
 bitbake noxtls packagegroup-noxtls
 bitbake core-image-minimal
@@ -141,6 +141,12 @@ The image step requires the `IMAGE_INSTALL:append` setting above. Record the
 Yocto release, machine, distro, layer commit, and build logs before adding the
 release to `LAYERSERIES_COMPAT_noxtls`. A native CMake build or metadata-only
 check does not establish image compatibility.
+
+The [Yocto validation workflow](.github/workflows/yocto-validation.yml) runs
+these checks for both releases on the same self-hosted `linux-builder` used by
+the i.MX91 and AM64x builds. Its script pins OE-Core and BitBake revisions,
+builds for `qemux86-64`, and checks that the image manifest contains both
+`noxtls` and `packagegroup-noxtls`.
 
 ## Licensing
 
