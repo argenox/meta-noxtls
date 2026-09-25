@@ -1,0 +1,10 @@
+/build*/
+/tmp*/
+/sstate-cache/
+/downloads/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/

@@ -1,0 +1,16 @@
+name: Layer structure
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  structural-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate layer structure
+        run: bash scripts/check-layer.sh

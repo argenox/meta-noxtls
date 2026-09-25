@@ -1,0 +1,10 @@
+# Yocto metadata and shell scripts are consumed on Linux build hosts.
+* text=auto
+*.bb text eol=lf
+*.bbappend text eol=lf
+*.inc text eol=lf
+*.conf text eol=lf
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
